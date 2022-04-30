@@ -1,6 +1,4 @@
 # Auto detect text files and perform LF normalization
 * text=auto
-data/train_dat.npz filter=lfs diff=lfs merge=lfs -text
-MEEI600/variables/variables.data-00000-of-0000 filter=lfs diff=lfs merge=lfs -text
 data/train_data.npz filter=lfs diff=lfs merge=lfs -text
 MEEI600/variables/variables.data-00000-of-00001 filter=lfs diff=lfs merge=lfs -text
