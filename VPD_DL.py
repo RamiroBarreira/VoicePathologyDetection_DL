@@ -13,6 +13,7 @@ from scipy.stats.mstats import gmean
 
 
 loadModel = 1 # turn loadModel on & off
+loadModel = 0 # turn loadModel on & off
 modelFileName = 'MEEI600'
 
 NO = 2; #number of outputs (Neural Network)
