@@ -9,10 +9,10 @@
 'Y' and 'Y_tes' contain the class ('0' for normal and '1' for pathological) associated to each block in 'X' and 'X_tes' respectively.<br>
 'S' and 'S_tes' associate blocks with each corresponding database file.
 
-PS: See the 'Database' section for more information on data.
-Each file has one or more blocks associated with itself.
-On the train data, there are 583 blocks that are associated to 203 files from the MEEI database 173/53 subset.
-On the test data, there are 61 blocks that are associated to 21 files from the MEEI database 173/53 subset.
+PS: See the 'Database' section for more information on data.<br>
+Each file has one or more blocks associated with itself.<br>
+On the train data, there are 583 blocks that are associated to 203 files from the MEEI database 173/53 subset.<br>
+On the test data, there are 61 blocks that are associated to 21 files from the MEEI database 173/53 subset.<br>
 Some files (~2) from the MEEI database were not considered because the record was shorter than 464.4ms.
 
 
