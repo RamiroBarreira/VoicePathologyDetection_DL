@@ -3,9 +3,9 @@
 
 
 ## Data
-`data/train_data.npz` contains the train data, which includes one numpy array 'X' with (583,227,227,3) shape and two arrays, 'Y' and 'S', of length 583.
-`data/test_data.npz` contains the test data, which includes one numpy array 'X_tes' with (61,227,227,3) shape, and two arrays, 'Y_tes' and 'S_tes' of 61 length.
-'Y' and 'Y_tes' contain the class ('0' for normal and '1' for pathological) associated to each block in 'X' and 'X_tes' respectively.
+`data/train_data.npz` contains the train data, which includes one numpy array 'X' with (583,227,227,3) shape and two arrays, 'Y' and 'S', of length 583.<br>
+`data/test_data.npz` contains the test data, which includes one numpy array 'X_tes' with (61,227,227,3) shape, and two arrays, 'Y_tes' and 'S_tes' of 61 length.<br>
+'Y' and 'Y_tes' contain the class ('0' for normal and '1' for pathological) associated to each block in 'X' and 'X_tes' respectively.<br>
 'S' and 'S_tes' associate blocks with each corresponding database file.
 
 PS: See the 'Database' section for more information on data.
