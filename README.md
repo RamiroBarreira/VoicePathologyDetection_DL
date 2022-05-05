@@ -1,6 +1,6 @@
 # VoicePathologyDetection_DL
  Deep Learning for detecting pathological voices.<br>
- Train and test a Convolutional Neural Network (CNN) for a voice pathology detection system.
+ <i>Train and test a Convolutional Neural Network (CNN) for a voice pathology detection system.</i>
 
 
 ## Data
