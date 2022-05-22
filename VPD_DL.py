@@ -109,7 +109,7 @@ predict = np.argmax(pred,axis=1)
 predict = predict.T
 Ypred = Y
 matchArray = np.diag( Ypred == predict )
-print('===================================================================')
+print('='*80)
 print('train accuracy per segment: '+str(np.sum(matchArray)/matchArray.shape[0]))
 
 ## computing test accuracy per segment
@@ -187,4 +187,4 @@ matchArray2 = np.diag( pp2_tes == TARGET_tes )
 print('test accuracy per file: '+str(np.sum(matchArray)/matchArray.shape[0]))
 print('test accuracy per file (2nd method): '+str(np.sum(matchArray2)/matchArray2.shape[0]))
 
-print('===================================================================')
+print('='*80)
