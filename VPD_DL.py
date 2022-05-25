@@ -127,7 +127,6 @@ P = np.array([]).reshape(0,pred.shape[1])
 for i in range(S[len(S)-1,0]+1):
     if np.nonzero(S==i)[0].size != 0:
         P = np.vstack((P,gmean(pred[np.nonzero(S==i)[0]],axis=0)))
-        #P = np.vstack((P,np.mean(pred[np.nonzero(S==i)[0]],axis=0)))
 
 TARGET = np.array([]).reshape(0,1)
 for i in range(S[len(S)-1,0]+1):
@@ -135,8 +134,8 @@ for i in range(S[len(S)-1,0]+1):
         TARGET = np.vstack((TARGET,Y[np.nonzero(S==i)[0][0]]))
 
 pp = np.argmax(P,axis=1)
-#TARGET = TARGET.T
-matchArray = np.diag( pp == TARGET )
+pp = np.array([pp]).T
+matchArray = pp == TARGET
 print('train accuracy per file: '+str(np.sum(matchArray)/matchArray.shape[0]))
 
 
