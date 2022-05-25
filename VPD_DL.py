@@ -106,18 +106,18 @@ elif loadModel == 0:
 ## computing training accuracy per segment
 pred = model.predict(X,batch_size=None)
 predict = np.argmax(pred,axis=1)
+predict = np.array([predict])
 predict = predict.T
-Ypred = Y
-matchArray = np.diag( Ypred == predict )
+matchArray = Y == predict
 print('='*80)
 print('train accuracy per segment: '+str(np.sum(matchArray)/matchArray.shape[0]))
 
 ## computing test accuracy per segment
 pred_tes = model.predict(X_tes,batch_size=None)
 predict_tes = np.argmax(pred_tes,axis=1)
+predict_tes = np.array([predict_tes])
 predict_tes = predict_tes.T
-Ypred_tes = Y_tes
-matchArray_tes = np.diag( Ypred_tes == predict_tes )
+matchArray_tes = Y_tes == predict_tes
 print('test accuracy per segment: '+str(np.sum(matchArray_tes)/matchArray_tes.shape[0]))
 
 
@@ -140,21 +140,17 @@ pp = np.argmax(P,axis=1)
 #TARGET = TARGET.T
 matchArray = np.diag( pp == TARGET )
 print('train accuracy per file: '+str(np.sum(matchArray)/matchArray.shape[0]))
-#errorArray = abs(pp - TARGET)
-#print('train accuracy per file: '+str(1-np.sum(errorArray)/errorArray.shape[1]))
-#
-#
-#
+
+
+
+
+
 ## computing test accuracy per file
 P_tes = np.array([]).reshape(0,pred_tes.shape[1])
 P2_tes = np.array([]).reshape(0,1)
 for i in range(S_tes[len(S_tes)-1,0]+1):
     if np.nonzero(S_tes==i)[0].size != 0:
-        # computing and stacking P_tes
-#        if np.nonzero(S_tes==i)[0][0] == 0:#245:#490:#245:
-#            print(pred_tes[np.nonzero(S_tes==i)[0]])
         P_tes = np.vstack((P_tes,gmean(pred_tes[np.nonzero(S_tes==i)[0]],axis=0)))
-        #P_tes = np.vstack((P_tes,np.mean(pred_tes[np.nonzero(S_tes==i)[0]],axis=0)))
         
         # computing and stacking P2_tes
         localClass0 = pred_tes[np.nonzero(S_tes==i)[0]]
@@ -168,7 +164,6 @@ for i in range(S_tes[len(S_tes)-1,0]+1):
             P2_tes = np.vstack((P2_tes,1))
         elif numNOR == numPAT:
             P2_tes = np.vstack((P2_tes,np.argmax(gmean(localClass0,axis=0))))
-            #P2_tes = np.vstack((P2_tes,np.argmax(np.mean(localClass0,axis=0))))
 
 
 
@@ -176,15 +171,13 @@ TARGET_tes = np.array([]).reshape(0,1)
 for i in range(S_tes[len(S_tes)-1,0]+1):
     if np.nonzero(S_tes==i)[0].size != 0:
         TARGET_tes = np.vstack((TARGET_tes,Y_tes[np.nonzero(S_tes==i)[0][0]]))
-#
+
 pp_tes = np.argmax(P_tes,axis=1)
-pp2_tes = P2_tes.T
-#TARGET_tes = TARGET_tes.T
-#errorArray_tes = abs(pp_tes - TARGET_tes)
-#errorArray2_tes = abs(pp2_tes - TARGET_tes)
-matchArray = np.diag( pp_tes == TARGET_tes )
-matchArray2 = np.diag( pp2_tes == TARGET_tes )
+pp_tes = np.array([pp_tes])
+pp_tes = pp_tes.T
+pp2_tes = P2_tes
+matchArray = pp_tes == TARGET_tes
+matchArray2 = pp2_tes == TARGET_tes
 print('test accuracy per file: '+str(np.sum(matchArray)/matchArray.shape[0]))
 print('test accuracy per file (2nd method): '+str(np.sum(matchArray2)/matchArray2.shape[0]))
-
 print('='*80)
