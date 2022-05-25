@@ -106,8 +106,7 @@ elif loadModel == 0:
 ## computing training accuracy per segment
 pred = model.predict(X,batch_size=None)
 predict = np.argmax(pred,axis=1)
-predict = np.array([predict])
-predict = predict.T
+predict = np.array([predict]).T
 matchArray = Y == predict
 print('='*80)
 print('train accuracy per segment: '+str(np.sum(matchArray)/matchArray.shape[0]))
@@ -115,8 +114,7 @@ print('train accuracy per segment: '+str(np.sum(matchArray)/matchArray.shape[0])
 ## computing test accuracy per segment
 pred_tes = model.predict(X_tes,batch_size=None)
 predict_tes = np.argmax(pred_tes,axis=1)
-predict_tes = np.array([predict_tes])
-predict_tes = predict_tes.T
+predict_tes = np.array([predict_tes]).T
 matchArray_tes = Y_tes == predict_tes
 print('test accuracy per segment: '+str(np.sum(matchArray_tes)/matchArray_tes.shape[0]))
 
@@ -173,8 +171,7 @@ for i in range(S_tes[len(S_tes)-1,0]+1):
         TARGET_tes = np.vstack((TARGET_tes,Y_tes[np.nonzero(S_tes==i)[0][0]]))
 
 pp_tes = np.argmax(P_tes,axis=1)
-pp_tes = np.array([pp_tes])
-pp_tes = pp_tes.T
+pp_tes = np.array([pp_tes]).T
 pp2_tes = P2_tes
 matchArray = pp_tes == TARGET_tes
 matchArray2 = pp2_tes == TARGET_tes
