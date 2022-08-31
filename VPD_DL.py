@@ -16,8 +16,8 @@ loadModel = 0 # turn loadModel on & off
 modelFileName = 'MEEI600'
 
 NO = 2; #number of outputs (Neural Network)
-EPOCHS = 600
-PATIENCE = 50
+EPOCHS = 200
+PATIENCE = 200
 weight_decay = 5e-4
 
 
@@ -106,7 +106,6 @@ elif loadModel == 0:
 ## computing training accuracy per segment
 pred = model.predict(X,batch_size=None)
 predict = np.argmax(pred,axis=1)
-predict = np.array([predict]).T
 matchArray = Y == predict
 print('='*80)
 print('train accuracy per segment: '+str(np.sum(matchArray)/matchArray.shape[0]))
@@ -114,7 +113,6 @@ print('train accuracy per segment: '+str(np.sum(matchArray)/matchArray.shape[0])
 ## computing test accuracy per segment
 pred_tes = model.predict(X_tes,batch_size=None)
 predict_tes = np.argmax(pred_tes,axis=1)
-predict_tes = np.array([predict_tes]).T
 matchArray_tes = Y_tes == predict_tes
 print('test accuracy per segment: '+str(np.sum(matchArray_tes)/matchArray_tes.shape[0]))
 
@@ -124,12 +122,12 @@ print('test accuracy per segment: '+str(np.sum(matchArray_tes)/matchArray_tes.sh
 
 ## computing training accuracy per file
 P = np.array([]).reshape(0,pred.shape[1])
-for i in range(S[len(S)-1,0]+1):
+for i in range(S[len(S)-1]+1):
     if np.nonzero(S==i)[0].size != 0:
         P = np.vstack((P,gmean(pred[np.nonzero(S==i)[0]],axis=0)))
 
 TARGET = np.array([]).reshape(0,1)
-for i in range(S[len(S)-1,0]+1):
+for i in range(S[len(S)-1]+1):
     if np.nonzero(S==i)[0].size != 0:
         TARGET = np.vstack((TARGET,Y[np.nonzero(S==i)[0][0]]))
 
@@ -145,7 +143,7 @@ print('train accuracy per file: '+str(np.sum(matchArray)/matchArray.shape[0]))
 ## computing test accuracy per file
 P_tes = np.array([]).reshape(0,pred_tes.shape[1])
 P2_tes = np.array([]).reshape(0,1)
-for i in range(S_tes[len(S_tes)-1,0]+1):
+for i in range(S_tes[len(S_tes)-1]+1):
     if np.nonzero(S_tes==i)[0].size != 0:
         P_tes = np.vstack((P_tes,gmean(pred_tes[np.nonzero(S_tes==i)[0]],axis=0)))
         
@@ -165,7 +163,7 @@ for i in range(S_tes[len(S_tes)-1,0]+1):
 
 
 TARGET_tes = np.array([]).reshape(0,1)
-for i in range(S_tes[len(S_tes)-1,0]+1):
+for i in range(S_tes[len(S_tes)-1]+1):
     if np.nonzero(S_tes==i)[0].size != 0:
         TARGET_tes = np.vstack((TARGET_tes,Y_tes[np.nonzero(S_tes==i)[0][0]]))
 
